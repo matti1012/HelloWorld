@@ -12,3 +12,5 @@ http://monsat.hatenablog.com/entry/generating-ssh-keys-for-github
 ラインフィード:LF(入力部分を次の行に送る)
 キャリッジリターン:CR(入力部分を先頭に戻す)
 CRLF > 改行
+
+invalidate : 無効にする
