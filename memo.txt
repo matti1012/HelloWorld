@@ -8,3 +8,7 @@ git config --global core.autoCRLF false
 http://webkaru.net/linux/ssh-keygen-command/
 公開鍵設置方法
 http://monsat.hatenablog.com/entry/generating-ssh-keys-for-github
+
+ラインフィード:LF(入力部分を次の行に送る)
+キャリッジリターン:CR(入力部分を先頭に戻す)
+CRLF > 改行
