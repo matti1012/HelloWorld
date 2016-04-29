@@ -14,3 +14,5 @@ http://monsat.hatenablog.com/entry/generating-ssh-keys-for-github
 CRLF > 改行
 
 invalidate : 無効にする
+
+Home,Endキー : 左端右端へ

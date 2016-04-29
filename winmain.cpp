@@ -3,6 +3,7 @@
 
 // 関数プロトタイプ
 int WINAPI WinMain(HINSTANCE, HINSTANCE, LPSTR, int);
+bool AnotherInstance();
 bool CreateMainWindow(HINSTANCE, int);
 LRESULT WINAPI WinProc(HWND, UINT, WPARAM, LPARAM);
 // グローバル変数
@@ -15,7 +16,7 @@ bool vkKeys[256];	// 仮想キーの状態
 
 // 定数
 const char CLASS_NAME[] = "Keyboard";
-const char APP_TITLE[] = "Keys Down"; // タイトルバーのテキスト
+const char APP_TITLE[] = "Prevent Multiple"; // タイトルバーのテキスト
 const int WINDOW_WIDTH = 400; // ウィンドウ幅
 const int WINDOW_HEIGHT = 400; // ウィンドウの高さ
 
@@ -31,9 +32,14 @@ int WINAPI WinMain( HINSTANCE hInstance, HINSTANCE hPrevInstance, LPSTR lpCmdLin
 {
 	MSG msg;
 
+	// 複数起動を防止
+	if (AnotherInstance())
+		return false;
+
 	// ウィンドウを作成
 	if (!CreateMainWindow(hInstance, nCmdShow))
 		return true;
+
 	// メインのメッセージループ
 	int done = 0;
 	while(!done)
@@ -174,6 +180,24 @@ LRESULT WINAPI WinProc(HWND hWnd, UINT msg, WPARAM wParam, LPARAM lParam)
 	default:
 		return DefWindowProc(hWnd, msg, wParam, lParam);
 	}
+}
+
+// ====================================================================================
+// 現在のアプリケーションの別のインスタンスをチェック
+// 戻り値 : true 別のインスタンスが検出された
+//			false このインスタンスは唯一つ
+// ====================================================================================
+bool AnotherInstance()
+{
+	HANDLE ourMutex;
+
+	// ユニークな文字列を使用してミューテックスを作る
+	ourMutex = CreateMutex(NULL, true, "Use_a_different_string_here_for_each_program_48161-XYZZY");
+
+	if (GetLastError() == ERROR_ALREADY_EXISTS)
+		return true; // 別のインスタンスが検出された
+
+	return false; // インスタンスは一つだけ
 }
 
 // ====================================================================================
