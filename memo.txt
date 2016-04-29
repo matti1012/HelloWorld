@@ -3,3 +3,8 @@ ctrl + j : 予測変換
 
 git:CRLFがどうのというエラー
 git config --global core.autoCRLF false
+
+公開鍵作成方法(push時にパス聞かれるのめんどい)
+http://webkaru.net/linux/ssh-keygen-command/
+公開鍵設置方法
+http://monsat.hatenablog.com/entry/generating-ssh-keys-for-github
